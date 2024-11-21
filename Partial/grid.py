@@ -14,11 +14,11 @@ culori = [
 ]
 
 # Citirea gridului
-df = pd.read_csv('grid_culori.csv')
+df = pd.read_csv('grid_culori.csv', header= None)
 grid_culori = df.to_numpy
 
 # Generarea secvenței de culori observate
-observatii = ######
+observatii = ["red", "red", "lime", "yellow", "blue"]
 
 # Mapare culori -> indecși
 culoare_to_idx = {culoare: idx for idx, culoare in enumerate(culori)}
@@ -47,11 +47,12 @@ emissions = np.zeros((numar_stari, len(culori)))
 ######
   
 # Modelul HMM
-
-######
+model = hmm.CategoricalHMM(n_components = numar_stari)
+model.transmat_ = transitions
+model.emissionprob_ = emissions
 
 # Rulăm algoritmul Viterbi pentru secvența de observații
-######
+secventa_stari = model.predict(observatii)
 
 # Convertim secvența de stări în poziții din grid
 drum = [idx_to_stare[idx] for idx in secventa_stari]
