@@ -2,10 +2,8 @@ from hmmlearn import hmm
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
 # Dimensiunea gridului
 dimensiune_grid = (10, 10)
-
 # Lista de culori predefinite
 culori = [
     "red", "blue", "green", "yellow", 
@@ -14,11 +12,11 @@ culori = [
 ]
 
 # Citirea gridului
-df = pd.read_csv('grid_culori.csv', header= None)
+df = pd.read_csv('grid_culori.csv')
 grid_culori = df.to_numpy
 
 # Generarea secvenței de culori observate
-observatii = ["red", "red", "lime", "yellow", "blue"]
+observatii = ######
 
 # Mapare culori -> indecși
 culoare_to_idx = {culoare: idx for idx, culoare in enumerate(culori)}
@@ -45,14 +43,13 @@ for i, j in stari_ascunse:
 # Matrice de emisie
 emissions = np.zeros((numar_stari, len(culori)))
 ######
-  
+
 # Modelul HMM
-model = hmm.CategoricalHMM(n_components = numar_stari)
-model.transmat_ = transitions
-model.emissionprob_ = emissions
+
+######
 
 # Rulăm algoritmul Viterbi pentru secvența de observații
-secventa_stari = model.predict(observatii)
+######
 
 # Convertim secvența de stări în poziții din grid
 drum = [idx_to_stare[idx] for idx in secventa_stari]
@@ -65,13 +62,13 @@ for i in range(dimensiune_grid[0]):
         ax.add_patch(plt.Rectangle((j, dimensiune_grid[0] - i - 1), 1, 1, color=culoare))
         ax.text(j + 0.5, dimensiune_grid[0] - i - 0.5, culoare, 
                 color="white", ha="center", va="center", fontsize=8, fontweight="bold")
-
+        
 # Evidențiem drumul rezultat
 for idx, (i, j) in enumerate(drum):
     ax.add_patch(plt.Circle((j + 0.5, dimensiune_grid[0] - i - 0.5), 0.3, color="black", alpha=0.7))
     ax.text(j + 0.5, dimensiune_grid[0] - i - 0.5, str(idx + 1), 
             color="white", ha="center", va="center", fontsize=10, fontweight="bold")
-
+    
 # Setări axă
 ax.set_xlim(0, dimensiune_grid[1])
 ax.set_ylim(0, dimensiune_grid[0])
