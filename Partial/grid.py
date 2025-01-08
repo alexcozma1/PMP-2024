@@ -12,8 +12,8 @@ culori = [
 ]
 
 # Citirea gridului
-df = pd.read_csv('grid_culori.csv')
-grid_culori = df.to_numpy
+df = pd.read_csv('grid_culori.csv', header=None)
+grid_culori = df.to_numpy()
 
 # Generarea secvenței de culori observate
 observatii = ######
