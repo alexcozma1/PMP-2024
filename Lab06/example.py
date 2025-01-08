@@ -7,12 +7,12 @@ k = 180    # Numărul total de apeluri observate
 T = 10     # Intervalul de timp în ore
 
 # Parametrii distribuției prior normală trunchiată la zero
-mu_prior = 15      # Presupunem că rata medie a priori este 15 apeluri/oră
-sigma_prior = 5    # Presupunem o deviație standard de 5 apeluri/oră
+#mu_prior = 15      # Presupunem că rata medie a priori este 15 apeluri/oră
+#sigma_prior = 5    # Presupunem o deviație standard de 5 apeluri/oră
 
 # Un prior prost ales duce la rezultate eronate
-# mu_prior = 0      # Presupunem că rata medie a priori este 0 apeluri/oră
-# sigma_prior = 1    # Presupunem o deviație standard de 1 apel/oră
+mu_prior = 0      # Presupunem că rata medie a priori este 0 apeluri/oră
+sigma_prior = 1    # Presupunem o deviație standard de 1 apel/oră
 
 # Definim gama de valori pentru λ (rata medie de apeluri pe oră)
 lambda_values = np.linspace(0.001, 30, 1000)  # Evităm zero pentru stabilitate numerică
